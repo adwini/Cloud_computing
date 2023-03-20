@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/renderer/LitRenderer"],function(e,a){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const i=(e,i,s)=>(0,a.html)`<label class="ui5-label-root" @click=${e._onclick} for="${(0,a.ifDefined)(e.for)}"><span class="${(0,a.classMap)(e.classes.textWrapper)}"><bdi id="${(0,a.ifDefined)(e._id)}-bdi"><slot></slot></bdi></span><span aria-hidden="true" class="ui5-label-required-colon"></span></label>`;var s=i;e.default=s});
+//# sourceMappingURL=LabelTemplate.lit.js.map

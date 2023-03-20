@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/UI5Element"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=a(t);function a(e){return e&&e.__esModule?e:{default:e}}const u={tag:"ui5-date",properties:{value:{type:String}}};class r extends t.default{static get metadata(){return u}}r.define();var d=r;e.default=d});
+//# sourceMappingURL=CalendarDate.js.map

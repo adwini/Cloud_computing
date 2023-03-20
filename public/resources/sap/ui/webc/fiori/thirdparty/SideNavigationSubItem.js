@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/UI5Element"],function(t,e){"use strict";Object.defineProperty(t,"__esModule",{value:true});t.default=void 0;e=i(e);function i(t){return t&&t.__esModule?t:{default:t}}const n={tag:"ui5-side-navigation-sub-item",properties:{text:{type:String},selected:{type:Boolean},icon:{type:String},title:{type:String}},events:{}};class s extends e.default{static get metadata(){return n}get _tooltip(){return this.title||this.text}}s.define();var a=s;t.default=a});
+//# sourceMappingURL=SideNavigationSubItem.js.map

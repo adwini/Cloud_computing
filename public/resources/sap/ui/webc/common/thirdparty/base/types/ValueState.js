@@ -1,0 +1,2 @@
+sap.ui.define(["exports","./DataType"],function(e,r){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;r=t(r);function t(e){return e&&e.__esModule?e:{default:e}}const n={None:"None",Success:"Success",Warning:"Warning",Error:"Error",Information:"Information"};class s extends r.default{static isValid(e){return!!n[e]}}s.generateTypeAccessors(n);var a=s;e.default=a});
+//# sourceMappingURL=ValueState.js.map

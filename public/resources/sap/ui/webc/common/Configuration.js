@@ -1,0 +1,2 @@
+sap.ui.define(["./thirdparty/base/config/Theme","./thirdparty/base/config/Language"],function(e,a){"use strict";var g={getTheme:e.getTheme,setTheme:e.setTheme,getLanguage:a.getLanguage,setLanguage:a.setLanguage};return g});
+//# sourceMappingURL=Configuration.js.map

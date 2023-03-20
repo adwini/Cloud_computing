@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/types/DataType"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=a(t);function a(e){return e&&e.__esModule?e:{default:e}}const s={Auto:"Auto",Base:"Base",Spot:"Spot",Dialog:"Dialog",Scene:"Scene"};class o extends t.default{static isValid(e){return!!s[e]}}o.generateTypeAccessors(s);var u=o;e.default=u});
+//# sourceMappingURL=IllustrationMessageSize.js.map

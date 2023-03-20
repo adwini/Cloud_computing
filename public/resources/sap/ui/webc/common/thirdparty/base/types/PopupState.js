@@ -1,0 +1,2 @@
+sap.ui.define(["exports","./DataType"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=s(t);function s(e){return e&&e.__esModule?e:{default:e}}const u={OPEN:"OPEN",CLOSED:"CLOSED",OPENING:"OPENING",CLOSING:"CLOSING"};class a extends t.default{static isValid(e){return!!u[e]}}a.generateTypeAccessors(u);var r=a;e.default=r});
+//# sourceMappingURL=PopupState.js.map

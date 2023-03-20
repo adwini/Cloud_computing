@@ -1,0 +1,2 @@
+sap.ui.define(["exports"],function(e){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const s={"SAP-icons-TNT":"tnt",BusinessSuiteInAppSymbols:"business-suite",horizon:"SAP-icons-v5"};var t=s;e.default=t});
+//# sourceMappingURL=IconCollectionsAlias.js.map

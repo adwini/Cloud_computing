@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/config/Theme","./v5/photo-voltaic","./v4/photo-voltaic"],function(t,e,a,o){"use strict";Object.defineProperty(t,"__esModule",{value:true});Object.defineProperty(t,"accData",{enumerable:true,get:function(){return a.accData}});t.default=void 0;Object.defineProperty(t,"ltr",{enumerable:true,get:function(){return a.ltr}});t.pathData=void 0;const r=(0,e.isThemeFamily)("sap_horizon")?a.pathData:o.pathData;t.pathData=r;var i="photo-voltaic";t.default=i});
+//# sourceMappingURL=photo-voltaic.js.map

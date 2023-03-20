@@ -1,0 +1,2 @@
+sap.ui.define(["exports","./util/getSingletonElementInstance"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=n(t);function n(e){return e&&e.__esModule?e:{default:e}}const o=()=>(0,t.default)("ui5-shared-resources",document.head);const u=(e,t)=>{const n=e.split(".");let u=o();for(let e=0;e<n.length;e++){const o=n[e];const l=e===n.length-1;if(!Object.prototype.hasOwnProperty.call(u,o)){u[o]=l?t:{}}u=u[o]}return u};var l=u;e.default=l});
+//# sourceMappingURL=getSharedResource.js.map

@@ -1,0 +1,201 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": ".theming",
+			"size": 64,
+			"theme": "base"
+		},
+		{
+			"name": "AvatarGroup.less",
+			"size": 4688,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "CalendarPlaceholder.less",
+			"size": 1656,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "Card.less",
+			"size": 11642,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "CardLoading.less",
+			"size": 4343,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "CardNumericIndicators.less",
+			"size": 851,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "DynamicPage.less",
+			"size": 9258,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "DynamicPageHeader.less",
+			"size": 1547,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "DynamicPageTitle.less",
+			"size": 8850,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "FlexibleColumnLayout.less",
+			"size": 3214,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "GridContainer.less",
+			"size": 1311,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "GridDragAndDrop.less",
+			"size": 160,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "GridList.less",
+			"size": 2457,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "GridListItem.less",
+			"size": 2665,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "ListPlaceholder.less",
+			"size": 1028,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "ObjectPlaceholder.less",
+			"size": 893,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "ProductSwitch.less",
+			"size": 74,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "ProductSwitchItem.less",
+			"size": 3086,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "SemanticPage.less",
+			"size": 740,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "ShellBar.less",
+			"size": 8689,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "SidePanel.less",
+			"size": 12252,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "TablePlaceholder.less",
+			"size": 767,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "TimelinePlaceholder.less",
+			"size": 1439,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "css_variables.css",
+			"size": 4620,
+			"theme": "base"
+		},
+		{
+			"name": "css_variables.less",
+			"size": 234,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "css_variables.source.less",
+			"size": 119157,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "library-RTL.css",
+			"size": 86314,
+			"theme": "base"
+		},
+		{
+			"name": "library-parameters.json",
+			"module": "sap/f/themes/base/library-parameters.json",
+			"size": 1875,
+			"theme": "base"
+		},
+		{
+			"name": "library.css",
+			"size": 86318,
+			"theme": "base"
+		},
+		{
+			"name": "library.less",
+			"size": 83556,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "library.source.less",
+			"size": 947,
+			"designtime": true,
+			"theme": "base"
+		},
+		{
+			"name": "library_skeleton-RTL.css",
+			"size": 89292,
+			"theme": "base"
+		},
+		{
+			"name": "library_skeleton.css",
+			"size": 89297,
+			"theme": "base"
+		},
+		{
+			"name": "resources.json",
+			"size": 3337
+		}
+	]
+}

@@ -1,0 +1,105 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": ".theming",
+			"size": 90,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "Cell.less",
+			"size": 859,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "Grouping.less",
+			"size": 837,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "RowAction.less",
+			"size": 918,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "RowSelection.less",
+			"size": 875,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "Scrolling.less",
+			"size": 471,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "Table.less",
+			"size": 608,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "css_variables.css",
+			"size": 13154,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "css_variables.less",
+			"size": 131343,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "css_variables.source.less",
+			"size": 130975,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library-RTL.css",
+			"size": 64434,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library-parameters.json",
+			"module": "sap/ui/table/themes/sap_horizon/library-parameters.json",
+			"size": 5288,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library.css",
+			"size": 64455,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library.less",
+			"size": 5681,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library.source.less",
+			"size": 741,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library_skeleton-RTL.css",
+			"size": 69221,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library_skeleton.css",
+			"size": 69244,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "resources.json",
+			"size": 1807
+		}
+	]
+}

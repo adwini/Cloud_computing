@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/renderer/LitRenderer"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const i=(e,i,d)=>(0,t.html)`<div class="ui5-badge-root"><slot name="icon"></slot>${e.hasText?s(e,i,d):undefined}<span class="ui5-hidden-text">${(0,t.ifDefined)(e.badgeDescription)}</span></div>`;const s=(e,i,s)=>(0,t.html)`<label class="ui5-badge-text"><bdi><slot></slot></bdi></label>`;var d=i;e.default=d});
+//# sourceMappingURL=BadgeTemplate.lit.js.map

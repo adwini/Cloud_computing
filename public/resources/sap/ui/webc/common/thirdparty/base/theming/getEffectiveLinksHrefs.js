@@ -1,0 +1,2 @@
+sap.ui.define(["exports","../CSP","../FeaturesRegistry"],function(e,t,r){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const a=e=>e.reduce((e,t)=>e.concat(Array.isArray(t)?a(t):t),[]);const s=(e,s=false)=>{let i=e[s?"staticAreaStyles":"styles"];const u=(0,r.getFeature)("OpenUI5Enablement");if(!i){return}if(!Array.isArray(i)){i=[i]}if(u){i.push(u.getBusyIndicatorStyles())}return a(i).filter(e=>!!e).map(e=>(0,t.getUrl)(e.packageName,e.fileName))};var i=s;e.default=i});
+//# sourceMappingURL=getEffectiveLinksHrefs.js.map

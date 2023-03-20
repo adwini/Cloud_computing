@@ -1,0 +1,87 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": ".theming",
+			"size": 90,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "ActionsStrip.less",
+			"size": 81,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "ObjectContent.less",
+			"size": 417,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "Paginator.less",
+			"size": 235,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "css_variables.css",
+			"size": 1504,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "css_variables.less",
+			"size": 117550,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "css_variables.source.less",
+			"size": 117182,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library-RTL.css",
+			"size": 23182,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library-parameters.json",
+			"module": "sap/ui/integration/themes/sap_horizon/library-parameters.json",
+			"size": 574,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library.css",
+			"size": 23170,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library.less",
+			"size": 1435,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library.source.less",
+			"size": 412,
+			"designtime": true,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library_skeleton-RTL.css",
+			"size": 23873,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "library_skeleton.css",
+			"size": 23861,
+			"theme": "sap_horizon"
+		},
+		{
+			"name": "resources.json",
+			"size": 1515
+		}
+	]
+}

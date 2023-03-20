@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/renderer/LitRenderer"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const r=(e,r,o)=>(0,t.html)`<tr class="ui5-table-group-row-root" part="group-row" role="row" aria-label=${(0,t.ifDefined)(e.ariaLabelText)} tabindex="${(0,t.ifDefined)(e._tabIndex)}" @focusin="${e._onfocusin}"><td colspan=${(0,t.ifDefined)(e.colSpan)}><slot></slot></td></tr>`;var o=r;e.default=o});
+//# sourceMappingURL=TableGroupRowTemplate.lit.js.map

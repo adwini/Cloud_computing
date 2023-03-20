@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/webc/common/thirdparty/base/CSP"],function(e){"use strict";e.setPackageCSSRoot("@ui5/webcomponents",sap.ui.require.toUrl("sap/ui/webc/main/thirdparty/css/"))});
+//# sourceMappingURL=library.config.js.map

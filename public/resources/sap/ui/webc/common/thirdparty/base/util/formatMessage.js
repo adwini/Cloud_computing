@@ -1,0 +1,2 @@
+sap.ui.define(["exports"],function(e){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const r=/('')|'([^']+(?:''[^']*)*)(?:'|$)|\{([0-9]+(?:\s*,[^{}]*)?)\}|[{}]/g;const t=(e,t)=>{t=t||[];return e.replace(r,(e,r,n,u,a)=>{if(r){return"'"}if(n){return n.replace(/''/g,"'")}if(u){return String(t[parseInt(u)])}throw new Error(`[i18n]: pattern syntax error at pos ${a}`)})};var n=t;e.default=n});
+//# sourceMappingURL=formatMessage.js.map

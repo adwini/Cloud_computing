@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/UI5Element"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=a(t);function a(e){return e&&e.__esModule?e:{default:e}}const i={tag:"ui5-filter-item",managedSlots:true,properties:{text:{type:String},additionalText:{type:String}},slots:{values:{type:HTMLElement}},events:{}};class n extends t.default{static get metadata(){return i}}n.define();var s=n;e.default=s});
+//# sourceMappingURL=FilterItem.js.map

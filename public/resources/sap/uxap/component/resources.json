@@ -1,0 +1,112 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": "Component-dbg.js",
+			"module": "sap/uxap/component/Component.js",
+			"size": 3836,
+			"isDebug": true,
+			"required": [
+				"sap/base/Log.js",
+				"sap/ui/core/Component.js",
+				"sap/ui/core/UIComponent.js",
+				"sap/ui/core/library.js",
+				"sap/uxap/library.js"
+			]
+		},
+		{
+			"name": "Component.js",
+			"module": "sap/uxap/component/Component.js",
+			"size": 1794,
+			"required": [
+				"sap/base/Log.js",
+				"sap/ui/core/Component.js",
+				"sap/ui/core/UIComponent.js",
+				"sap/ui/core/library.js",
+				"sap/uxap/library.js"
+			]
+		},
+		{
+			"name": "Component.js.map",
+			"size": 1861,
+			"isDebug": true
+		},
+		{
+			"name": "ObjectPageComponentContainer-dbg.js",
+			"module": "sap/uxap/component/ObjectPageComponentContainer.js",
+			"size": 2733,
+			"isDebug": true,
+			"required": [
+				"sap/base/Log.js",
+				"sap/ui/core/Component.js",
+				"sap/ui/core/ComponentContainer.js"
+			]
+		},
+		{
+			"name": "ObjectPageComponentContainer.js",
+			"module": "sap/uxap/component/ObjectPageComponentContainer.js",
+			"size": 1370,
+			"required": [
+				"sap/base/Log.js",
+				"sap/ui/core/Component.js",
+				"sap/ui/core/ComponentContainer.js"
+			]
+		},
+		{
+			"name": "ObjectPageComponentContainer.js.map",
+			"size": 1384,
+			"isDebug": true
+		},
+		{
+			"name": "ObjectPageLayoutUXDrivenFactory-dbg.controller.js",
+			"module": "sap/uxap/component/ObjectPageLayoutUXDrivenFactory.controller.js",
+			"size": 4110,
+			"isDebug": true,
+			"required": [
+				"sap/base/Log.js",
+				"sap/base/util/each.js",
+				"sap/base/util/isEmptyObject.js",
+				"sap/ui/base/ManagedObject.js",
+				"sap/ui/core/mvc/Controller.js",
+				"sap/ui/model/BindingMode.js",
+				"sap/ui/model/Context.js"
+			],
+			"dynRequired": true
+		},
+		{
+			"name": "ObjectPageLayoutUXDrivenFactory.controller.js",
+			"module": "sap/uxap/component/ObjectPageLayoutUXDrivenFactory.controller.js",
+			"size": 1677,
+			"required": [
+				"sap/base/Log.js",
+				"sap/base/util/each.js",
+				"sap/base/util/isEmptyObject.js",
+				"sap/ui/base/ManagedObject.js",
+				"sap/ui/core/mvc/Controller.js",
+				"sap/ui/model/BindingMode.js",
+				"sap/ui/model/Context.js"
+			],
+			"dynRequired": true
+		},
+		{
+			"name": "ObjectPageLayoutUXDrivenFactory.controller.js.map",
+			"size": 2296,
+			"isDebug": true
+		},
+		{
+			"name": "ObjectPageLayoutUXDrivenFactory.view.xml",
+			"module": "sap/uxap/component/ObjectPageLayoutUXDrivenFactory.view.xml",
+			"size": 2712,
+			"required": [
+				"sap/uxap/ObjectPageLayout.js",
+				"sap/uxap/ObjectPageSection.js",
+				"sap/uxap/ObjectPageSubSection.js",
+				"sap/uxap/component/ObjectPageLayoutUXDrivenFactory.controller.js"
+			]
+		},
+		{
+			"name": "resources.json",
+			"size": 2742
+		}
+	]
+}

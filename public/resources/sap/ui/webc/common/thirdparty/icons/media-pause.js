@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/config/Theme","./v5/media-pause","./v4/media-pause"],function(e,a,t,r){"use strict";Object.defineProperty(e,"__esModule",{value:true});Object.defineProperty(e,"accData",{enumerable:true,get:function(){return t.accData}});e.default=void 0;Object.defineProperty(e,"ltr",{enumerable:true,get:function(){return t.ltr}});e.pathData=void 0;const i=(0,a.isThemeFamily)("sap_horizon")?t.pathData:r.pathData;e.pathData=i;var u="media-pause";e.default=u});
+//# sourceMappingURL=media-pause.js.map

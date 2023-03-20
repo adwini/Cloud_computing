@@ -1,0 +1,19 @@
+.content>div{
+  padding: 10px;
+}
+
+.sapUiUx3ShellCanvas{
+	box-shadow: 0 4px 17px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 0 4px 17px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 4px 17px rgba(0,0,0,0.4);
+}
+
+.sapMGlobalBackgroundImage{
+
+	    background-color: rgba(202, 254, 202, 0.36);
+}
+
+.class_selected_list_item{
+	background : rgba(224, 252, 224, 0.36) !important;
+	outline: none !important;
+}

@@ -1,0 +1,7 @@
+/*!
+ * OpenUI5
+ * (c) Copyright 2009-2023 SAP SE or an SAP affiliate company.
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+sap.ui.define(["sap/ui/thirdparty/jquery","sap/ui/core/Control","sap/ui/core/EnabledPropagator","./library","./VerticalProgressIndicatorRenderer"],function(jQuery,e,t,r,i){"use strict";var a=e.extend("sap.ui.suite.VerticalProgressIndicator",{metadata:{library:"sap.ui.suite",deprecated:true,properties:{percentage:{type:"int",group:"Misc",defaultValue:null}},associations:{ariaLabelledBy:{type:"sap.ui.core.Control",multiple:true,singularName:"ariaLabelledBy"},ariaDescribedBy:{type:"sap.ui.core.Control",multiple:true,singularName:"ariaDescribedBy"}},events:{press:{}}},renderer:i});t.call(a.prototype);a.prototype.setPercentage=function(e){var t=this.getPercentage();if(t==e){return this}this.oBar=this.getDomRef("bar");t=e;if(t<0){t=0}if(t>100){t=100}var r=Math.round(t*58/100);var i=58-r;this.setProperty("percentage",e,true);jQuery(this.oBar).css("top",i);jQuery(this.oBar).css("height",r);if(!this.oThis){this.oThis=this.$()}this.oThis.attr("aria-valuenow",e+"%");return this};a.prototype.onclick=function(e){this.firePress({});e.preventDefault();e.stopPropagation()};a.prototype.focus=function(){var e=this.getDomRef();if(e){e.focus()}};return a});
+//# sourceMappingURL=VerticalProgressIndicator.js.map

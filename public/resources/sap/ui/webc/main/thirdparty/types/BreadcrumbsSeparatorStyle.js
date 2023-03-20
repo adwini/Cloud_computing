@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/types/DataType"],function(e,a){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;a=t(a);function t(e){return e&&e.__esModule?e:{default:e}}const s={Slash:"Slash",BackSlash:"BackSlash",DoubleBackSlash:"DoubleBackSlash",DoubleGreaterThan:"DoubleGreaterThan",DoubleSlash:"DoubleSlash",GreaterThan:"GreaterThan"};class l extends a.default{static isValid(e){return!!s[e]}}l.generateTypeAccessors(s);var r=l;e.default=r});
+//# sourceMappingURL=BreadcrumbsSeparatorStyle.js.map

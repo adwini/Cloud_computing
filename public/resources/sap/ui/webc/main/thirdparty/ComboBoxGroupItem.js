@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/UI5Element","./GroupHeaderListItem"],function(e,t,r){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=u(t);r=u(r);function u(e){return e&&e.__esModule?e:{default:e}}const s={tag:"ui5-cb-group-item",properties:{text:{type:String},focused:{type:Boolean}},slots:{},events:{}};class a extends t.default{static get metadata(){return s}static get dependencies(){return[r.default]}get isGroupItem(){return true}}a.define();var n=a;e.default=n});
+//# sourceMappingURL=ComboBoxGroupItem.js.map

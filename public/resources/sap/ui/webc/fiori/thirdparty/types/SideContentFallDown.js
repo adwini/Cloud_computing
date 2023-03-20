@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/types/DataType"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=i(t);function i(e){return e&&e.__esModule?e:{default:e}}const s={BelowXL:"BelowXL",BelowL:"BelowL",BelowM:"BelowM",OnMinimumWidth:"OnMinimumWidth"};class o extends t.default{static isValid(e){return!!s[e]}}o.generateTypeAccessors(s);var u=o;e.default=u});
+//# sourceMappingURL=SideContentFallDown.js.map

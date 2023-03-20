@@ -1,0 +1,2 @@
+sap.ui.define(["exports","../util/detectNavigatorLanguage","../config/Language","./Locale"],function(e,t,n,u){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=a(t);u=a(u);function a(e){return e&&e.__esModule?e:{default:e}}const r=new Map;const f=e=>{if(!r.has(e)){r.set(e,new u.default(e))}return r.get(e)};const i=e=>{try{if(e&&typeof e==="string"){return f(e)}}catch(e){}};const o=e=>{if(e){return i(e)}if((0,n.getLanguage)()){return f((0,n.getLanguage)())}return i((0,t.default)())};var g=o;e.default=g});
+//# sourceMappingURL=getLocale.js.map

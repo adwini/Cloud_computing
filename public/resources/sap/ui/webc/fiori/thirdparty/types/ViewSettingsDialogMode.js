@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/types/DataType"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;t=r(t);function r(e){return e&&e.__esModule?e:{default:e}}const s={Sort:"Sort",Filter:"Filter"};class a extends t.default{static isValid(e){return!!s[e]}}a.generateTypeAccessors(s);var u=a;e.default=u});
+//# sourceMappingURL=ViewSettingsDialogMode.js.map

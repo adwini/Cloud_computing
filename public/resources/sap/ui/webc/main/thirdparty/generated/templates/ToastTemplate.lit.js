@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/renderer/LitRenderer"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const o=(e,o,r)=>(0,t.html)`${e.domRendered?s(e,o,r):undefined} `;const s=(e,o,s)=>(0,t.html)`<div class="ui5-toast-root" role="alert" style="${(0,t.styleMap)(e.styles.root)}" @mouseover="${e._onmouseover}" @mouseleave="${e._onmouseleave}" @transitionend="${e._ontransitionend}"><bdi><slot></slot></bdi></div>`;var r=o;e.default=r});
+//# sourceMappingURL=ToastTemplate.lit.js.map

@@ -1,0 +1,76 @@
+/* NOTE: This file was generated as an optimized version of "library.source.less" for the Theme Designer. */
+
+/*!
+ * OpenUI5
+ * (c) Copyright 2009-2023 SAP SE or an SAP affiliate company.
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+@import "../base/library.less";
+@import "../../../../../../Base/baseLib/sap_belize/base.less"; /* ORIGINAL IMPORT PATH: "../../../../../sap/ui/core/themes/sap_belize/base.less" */
+
+@import "../../../../../sap/ui/core/themes/sap_belize/global.less";
+/* START "Overlay.less" */
+/******************************************************************
+	Style of the RTA Overlays - sap_belize Theme
+*******************************************************************/
+@_sap_ui_rta_Overlay_ShellBG: @sapUiShellBackground; //#c9d8e7
+@_sap_ui_rta_Overlay_Base_PlaceholderBG: @sapUiPageHeaderBackground; //#eff4f9
+
+.sapUiRta .sapUiDtOverlayDropZone > .sapUiDtOverlayChildren > .sapUiDtOverlayMovable {
+	background: inherit;
+}
+/* END "Overlay.less" */
+
+/* START "Dialogs.less" */
+/******************************************************************
+	Style of Dialogs shown in RTA - sap_belize Theme
+*******************************************************************/
+@_sap_ui_rta_Dialogs_BorderLightColor: @sapUiInvertedElement; //#fff
+@_sap_ui_rta_Dialogs_BorderDarkColor: darken(@sapUiShellTextColor, 8); //#2F3C48
+/* END "Dialogs.less" */
+
+/* START "Toolbar.personalization.less" */
+/******************************************************************
+	Style of the Personalization Toolbar - sap_belize Theme
+*******************************************************************/
+@_sap_ui_rta_Toolbar_Personalization_BaseColor: darken(@sapUiShellTextColor, 8); //#2F3C48
+/* END "Toolbar.personalization.less" */
+
+/* START "Toolbar.adaptation.less" */
+/******************************************************************
+	Style of the RTA Toolbar (type: adaptation) - sap_belize Theme
+*******************************************************************/
+@_sap_ui_rta_Toolbar_Adaptation_BaseColor: darken(@sapUiShellTextColor, 8); //#2F3C48
+@_sap_ui_rta_Toolbar_Adaptation_TextColor: @sapUiContentContrastTextColor; //#fff
+@_sap_ui_rta_Toolbar_Adaptation_BtnFocusBorder: @sapUiContentContrastTextColor; //#fff
+@_sap_ui_rta_Toolbar_Adaptation_BtnHoverText: @sapUiSelected; //#427cac
+@_sap_ui_rta_Toolbar_Adaptation_SegBBtnHoverTextColor: @sapUiContentContrastTextColor; //fff
+@_sap_ui_rta_Toolbar_Adaptation_SegBBtnHoverBG: @sapUiSelected; //#427cac
+@_sap_ui_rta_Toolbar_Adaptation_DraftVersionColor: lighten(@sapUiCriticalText, 15%); //#f9af41
+@_sap_ui_rta_Toolbar_Adaptation_ActiveVersionColor: @sapUiContentSearchHighlightColor; //#d4f7db
+
+.sapUiRtaMode {
+	.sapUiRtaToolbar.sapUiRtaToolbarAdaptation {
+		.sapMBtn {
+			&.sapMBtnDisabled .sapMBtnInner {
+				opacity: 1.0;
+			}
+		}
+
+		.sapMSegBBtn.sapMSegBBtnFocusable {
+			&:hover .sapMSegBBtnInner {
+				background-color: @_sap_ui_rta_Toolbar_Adaptation_SegBBtnHoverBG;
+			}
+		}
+	}
+}
+/* END "Toolbar.adaptation.less" */
+
+/* START "Toolbar.base.less" */
+/******************************************************************
+	Style of the RTA Toolbar (all types) - sap_belize Theme
+*******************************************************************/
+@_sap_ui_rta_Toolbar_Base_TextColor: @sapUiContentContrastTextColor; //#fff
+@_sap_ui_rta_Toolbar_Base_BaseColor: darken(@sapUiShellTextColor, 8); //#2F3C48
+@_sap_ui_rta_Toolbar_Base_BaseBG: darken(@sapUiShellTextColor, 8); //#2F3C48
+/* END "Toolbar.base.less" */

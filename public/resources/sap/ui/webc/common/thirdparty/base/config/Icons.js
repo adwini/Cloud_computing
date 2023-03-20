@@ -1,0 +1,2 @@
+sap.ui.define(["exports","./Theme"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.setDefaultIconCollection=e.getEffectiveDefaultIconCollection=e.getDefaultIconCollection=void 0;const o=new Map;const n=(e,t)=>{if(t==="horizon"){t="SAP-icons-v5"}o.set(e,t)};e.setDefaultIconCollection=n;const c=e=>o.get(e);e.getDefaultIconCollection=c;const i=()=>{const e=(0,t.getTheme)();const n=o.get(e);if(n){return n}return(0,t.isThemeFamily)("sap_horizon")?"SAP-icons-v5":"SAP-icons"};e.getEffectiveDefaultIconCollection=i});
+//# sourceMappingURL=Icons.js.map

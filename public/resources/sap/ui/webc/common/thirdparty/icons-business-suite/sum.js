@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/asset-registries/Icons"],function(t,s){"use strict";Object.defineProperty(t,"__esModule",{value:true});t.pathData=t.ltr=t.default=t.accData=void 0;const e="sum";const a="M216.5 435h263v76h-382v-53l162-199-154-197V1h353v77h-234v3l136 174-144 177v3z";t.pathData=a;const c=false;t.ltr=c;const n=null;t.accData=n;const o="business-suite";const i="@ui5/webcomponents-icons-business-suite";(0,s.registerIcon)(e,{pathData:a,ltr:c,collection:o,packageName:i});var u="sum";t.default=u});
+//# sourceMappingURL=sum.js.map

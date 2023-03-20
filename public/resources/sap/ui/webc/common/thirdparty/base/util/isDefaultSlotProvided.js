@@ -1,0 +1,2 @@
+sap.ui.define(["exports","./SlotsHelper"],function(e,t){"use strict";Object.defineProperty(e,"__esModule",{value:true});e.default=void 0;const o=e=>Array.from(e.childNodes).filter(e=>e.nodeType!==Node.COMMENT_NODE&&(0,t.getSlotName)(e)==="default"&&(e.nodeType!==Node.TEXT_NODE||e.nodeValue.trim().length!==0)).length>0;var d=o;e.default=d});
+//# sourceMappingURL=isDefaultSlotProvided.js.map

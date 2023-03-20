@@ -1,0 +1,2 @@
+sap.ui.define(["exports","sap/ui/webc/common/thirdparty/base/config/Theme","./v5/message-success","./v4/message-success"],function(e,t,a,s){"use strict";Object.defineProperty(e,"__esModule",{value:true});Object.defineProperty(e,"accData",{enumerable:true,get:function(){return a.accData}});e.default=void 0;Object.defineProperty(e,"ltr",{enumerable:true,get:function(){return a.ltr}});e.pathData=void 0;const r=(0,t.isThemeFamily)("sap_horizon")?a.pathData:s.pathData;e.pathData=r;var c="message-success";e.default=c});
+//# sourceMappingURL=message-success.js.map
