@@ -9,20 +9,24 @@
 
 <script type="text/javascript">
     function ui(id){ return sap.ui.getCore().byId(id); } 
+    function showBusyDialog(message){
+        return new sap.m.BusyDialog({text : message});
+    }
     var go_App_Right = "";
     var go_App_Left = "";
     var go_SplitContainer = "";
     var labelWidth = "140px";
 	var TextWidth ="auto";
+    var mode =  "";
+    var filteredBP = [];
+    
+    
     $(document).ready(function () {	
-        CreateContent();	
+        CreateContent();
+        ui('LEFT_MENU_TEMPLATE-MENU_LIST-0').firePress();
 	});
-
+   
    
 </script>
 
  @endsection
-
-
-
- 

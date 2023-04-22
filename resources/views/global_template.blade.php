@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
             data-sap-ui-theme="sap_bluecrystal">
     </script>
         <link rel="stylesheet" type="text/css" href="{!! asset('css/app.css') !!}" />
+        <link rel="stylesheet" type="text/css" href="{!! asset('css/theme.css') !!}" />
         <link rel="stylesheet" type="text/css" href="{!! asset('css/notify.css') !!}" />
         <link rel="stylesheet" type="text/css" href="{!! asset('css/normalize.css') !!}" />
         <link rel="stylesheet" type="text/css" href="{!! asset('css/ns-default.css') !!}" />
