@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <script src="{!! asset('resources/sap-ui-core.js') !!}"
@@ -12,11 +12,11 @@
             data-sap-ui-theme="sap_bluecrystal">
     </script>
         <link rel="stylesheet" type="text/css" href="{!! asset('css/app.css') !!}" />
-        <link rel="stylesheet" type="text/css" href="{!! asset('css/theme.css') !!}" />
         <link rel="stylesheet" type="text/css" href="{!! asset('css/notify.css') !!}" />
         <link rel="stylesheet" type="text/css" href="{!! asset('css/normalize.css') !!}" />
         <link rel="stylesheet" type="text/css" href="{!! asset('css/ns-default.css') !!}" />
         <link rel="stylesheet" type="text/css" href="{!! asset('css/ns-style-growl.css') !!}" />
+        <link rel="stylesheet" href="{!! asset('css/theme.css') !!}" type="text/css" media="all">
     @yield('styles')
     @yield('content')
 </head>

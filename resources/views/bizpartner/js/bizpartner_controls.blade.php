@@ -57,14 +57,19 @@
 						go_App_Right.to('BP_PAGE_DISPLAY');
 					break;
 					case "BP_LIST" :
-
-						listingBp._getData(bizData);
+					let response = async () => {
+						let data = await bpDataOrganizer._getBpData();
+						listingBp._getData(data);
 						go_App_Right.to('PAGE_BP_LISTING');
-					break;
-					case "BP_TEST" :
+					}
+					response();
 
-						go_App_Right.to('TEST_PAGE');
 					break;
+
+					// case "BP_TEST" :
+
+					// 	go_App_Right.to('TEST_PAGE');
+					// break;
 
 				}
                 
@@ -73,29 +78,29 @@
 		
         const gt_list = [
                 {
-                    title   : "Create Business Partner",
+                    title   : "Create Customer",
 					funct  	: "CREATE_BP",
                     icon    : "sap-icon://add-product",
                     visible : true
                 },
                 {
-                    title   : "Display Business Partner",
+                    title   : "Find Customer",
                     icon    : "sap-icon://business-card",
 					funct  	: "DISPLAY_BP",
                     visible : true
                 },
                 {
-                    title   : "Business Partner Listing",
+                    title   : "Customer Listing",
                     icon    : "sap-icon://checklist-item",
 					funct  	: "BP_LIST",
                     visible : true
                 },
-				{
-                    title   : "Test",
-                    icon    : "sap-icon://checklist-item",
-					funct  	: "BP_TEST",
-                    visible : true
-                }
+				// {
+                //     title   : "Test",
+                //     icon    : "sap-icon://checklist-item",
+				// 	funct  	: "BP_TEST",
+                //     visible : true
+                // }
 
         ];
 
@@ -117,12 +122,13 @@
         let page  = new sap.m.Page("CREATE_BP_PAGE",{}).addStyleClass('sapUiSizeCompact');
         let pageHeader = new sap.m.Bar("",{  
 			enableFlexBox: false,
+
 			contentLeft:[
 				new sap.m.Button({ icon:"sap-icon://nav-back",
 					press:function(oEvt){
 						go_App_Right.back();
 					} 
-				}),
+				}).addStyleClass('buttonHeaderColor'),
 				new sap.m.Button({icon:"sap-icon://menu2",
 					press:function(){
 						go_SplitContainer.setSecondaryContentWidth("250px");
@@ -133,33 +139,42 @@
 						}
 					
 					}
-				}), 
+				}).addStyleClass('buttonHeaderColor'), 
 				
 			],
+
+			contentRight:[
+				new sap.m.Button({
+					icon: "sap-icon://home",
+					press: function(){
+						window.location.href = MainPageLink; 
+					}
+				}).addStyleClass('buttonHeaderColor')
+			],
 			contentMiddle:[
-                new sap.m.Label("BP_TITLE",{text:"Create Business Partner"})
+                new sap.m.Label("BP_TITLE",{text:"Create Customer"})
             ],
 		
 		});
         let crumbs = new sap.m.Breadcrumbs("CREATE_BP_BRDCRMS",{
-            currentLocationText: "Create Business Partner",
-            links: [
-                new sap.m.Link({
-                    text:"Home",
-                    press:function(oEvt){
-                       // fn_click_breadcrumbs("HOME");
-                    }
-                }),
-				new sap.m.Link("CREATE_BP_BRDCRMS_TITLE",{
-                    text:"Business Partner Management",
-                    press:function(oEvt){
-                      //  fn_click_breadcrumbs("HOME");
-                    }
-                }),
+            currentLocationText: "Create Customer",
+            // links: [
+            //     new sap.m.Link({
+            //         text:"Home",
+            //         press:function(oEvt){
+            //            // fn_click_breadcrumbs("HOME");
+            //         }
+            //     }),
+			// 	new sap.m.Link("CREATE_BP_BRDCRMS_TITLE",{
+            //         text:"Business Partner Management",
+            //         press:function(oEvt){
+            //           //  fn_click_breadcrumbs("HOME");
+            //         }
+            //     }),
 				
-            ]
+            // ]
         });
-
+		let errorPanel = new sap.m.Panel("MESSAGE_STRIP_BP_ERROR",{visible:false});
         let createPageFormHeader = new sap.uxap.ObjectPageLayout({
             headerTitle:[
                 new sap.uxap.ObjectPageHeader("OBJECTHEADER_BP_NAME",{
@@ -195,8 +210,9 @@
                             icon: "sap-icon://save",
                             press: function () {
 								if(screenMode._mode == "create"){
-									createBP();
-								}else{
+								createBP();
+								}
+								else{
 									bpDataOrganizer._updateById(screenMode._id);
 								}
                             }
@@ -215,6 +231,13 @@
 								screenMode._display(screenMode._id);
                             }
                         }),
+						new sap.m.Button("CREATE_BP_DEL_BTN", {
+							visible: true,
+							icon: "sap-icon://delete",
+							press: function () {
+							ui('BP_DELETE_DIALOG').open();
+                            }
+                        }),
                     ]
                 }).addStyleClass('class_transparent_bar'),
 
@@ -225,59 +248,145 @@
 					width:"auto",
 					content:[
                         new sap.ui.layout.form.SimpleForm("PANEL_FORM",{
-							title: "New Business Partner",
+							title: "Add New Customer",
                             maxContainerCols:2,
 							labelMinWidth:130,
 							content:[
                                 new sap.ui.core.Title("GENERAL_INFO_TITLE1",{text:""}),
-                                new sap.m.Label({text:"Business Partner Type",width:"160px"}).addStyleClass('class_label_padding'),
-								new sap.m.Select("BP_TYPE_INFO",{
+
+								
+							
+								
+								new sap.m.Label({text:"First Name",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("first_name",{value:"", width:TextWidth}),
+								
+								
+								
+								new sap.m.Label({text:"Last Name",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("L_name",{value:"", width:TextWidth}),
+
+								
+								
+								new sap.m.Label({text:"Email Address",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("E_adress",{value:"", width:TextWidth}),
+
+								
+							
+								new sap.m.Label({text:"Phone Number",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("p_num",{value:"", width:TextWidth}),
+
+								new sap.m.Label({text:"Mailing Address",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("m_address",{value:"", width:TextWidth}),
+
+								new sap.m.Label({text:"Billing Address",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("b_address",{value:"", width:TextWidth}),
+
+								new sap.m.Label({text:"Date of Birth",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.DatePicker("date_of_birth",{value:"", width:TextWidth}),
+
+
+								new sap.m.Label({text:"Gender",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Select("gender",{
 									width:TextWidth,
 									//selectedKey: "",
 									items: [
 										new sap.ui.core.ListItem({
-											text: "IBM",
-											key: "IBM",
-											additionalText: "IBM",
-											icon: "sap-icon://along-stacked-chart"
+											text: "",
+											key: "",
+											
 										}),
 										new sap.ui.core.ListItem({
-											text: "ACT",
-											key: "ACT",
-											additionalText: "ACT",
-											icon: "sap-icon://chart-table-view"
+											text: "MALE",
+											key: "male",
+											additionalText: "MALE",
+											icon: "sap-icon://male"
 										}),
 										new sap.ui.core.ListItem({
-											text: "BFA",
-											key: "BFA",
-											additionalText: "BFA",
-											icon: "sap-icon://permission"
-										})
+											text: "FEMALE",
+											key: "female",
+											additionalText: "FEMALE",
+											icon: "sap-icon://female"
+										}),
+										
 									]
 								}),
-                                new sap.m.Label({text:"Registered Name",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("BP_TYPE_REGNAME",{value:"", width:TextWidth}),
-                            	new sap.m.Label({text:"Business Partner ID",width:"150px"}).addStyleClass('class_label_padding'),
-								new sap.m.Input("INPUT_BP_ID",{
-									value:"", 
-									width:TextWidth,
-									change : function(oEvt){
-										let lv_value = oEvt.getSource().getValue().trim();
-										let label = "New Business Partner"
-										let lv_bpid = label + " (" + lv_value + ")";
-										ui("PANEL_FORM").setTitle(lv_bpid);
-										
-									}
-								}),
+
+
                                 new sap.ui.core.Title("GENERAL_INFO_TITLE2",{text:""}),
-                                new sap.m.Label({text:"External Partner",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("BP_TYPE_EXTPARTNER",{value:"", width:TextWidth}),
 								
-								new sap.m.Label({text:"Source System",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("INPUT_CONTROL_INFO_SOURCE_SYS",{width:TextWidth}),
+                                
+
+								new sap.m.Label({text:"Occupation",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("occupation",{value:"", width:TextWidth}),
+
+								new sap.m.Label({text:"Company Name",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("com_name",{value:"", width:TextWidth}),
+
+								new sap.m.Label({text:"Industry	",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("industry",{value:"", width:TextWidth}),
+								
+								new sap.m.Label({text:"Customer Type",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Select("customer_type",{
+									width:TextWidth,
+									//selectedKey: "",
+									items: [
+										new sap.ui.core.ListItem({
+											text: "",
+											key: "",
+											
+										}),
+										new sap.ui.core.ListItem({
+											text: "NEW",
+											key: "new",
+											// additionalText: "MALE",
+											// icon: "sap-icon://male"
+										}),
+										new sap.ui.core.ListItem({
+											text: "OCCATIONAL",
+											key: "occational",
+											// additionalText: "FEMALE",
+											// icon: "sap-icon://female"
+										}),
+										
+									]
+								}),
+								new sap.m.Label({text:"Referral Source",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Select("ref_src",{
+									width:TextWidth,
+									//selectedKey: "",
+									items: [
+										new sap.ui.core.ListItem({
+											text: "",
+											key: "",
+											
+										}),
+										new sap.ui.core.ListItem({
+											text: "Social Media",
+											key: "social_m",
+											// additionalText: "MALE",
+											// icon: "sap-icon://male"
+										}),
+										new sap.ui.core.ListItem({
+											text: "Friend",
+											key: "friend",
+											// additionalText: "FEMALE",
+											// icon: "sap-icon://female"
+										}),
+										
+									]
+								}),
 									
-                                new sap.m.Label({text:"Deletion Flag",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Switch("CONTROL_INFO_DEL_FLAG",{state:false}),
+
+								new sap.m.Label({text:"Purchase History",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.DatePicker("p_history",{value:"", width:TextWidth}),
+
+
+								new sap.m.Label({text:"Payment Method",width:labelWidth}).addStyleClass('class_label_padding'),			
+								new sap.m.Input("p_method",{value:"", width:TextWidth}),
+
+								new sap.m.Label({text:"Order Number",width:labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("or_num",{value:"", width:TextWidth}),
+
                             ]
                         })
                     ]
@@ -287,6 +396,7 @@
 
         page.setCustomHeader(pageHeader);
         page.addContent(crumbs);
+		page.addContent(errorPanel);
         //page.addContent(createPageFormHeader);
 		page.addContent(createPageFormContent);
         return page;
@@ -303,7 +413,7 @@
 					press:function(oEvt){
 						go_App_Right.back();
 					} 
-				}),
+				}).addStyleClass('buttonHeaderColor'),
 				new sap.m.Button({icon:"sap-icon://menu2",
 					press:function(){
 						go_SplitContainer.setSecondaryContentWidth("250px");
@@ -313,11 +423,11 @@
 							go_SplitContainer.setShowSecondaryContent(false);
 						}
 					}
-				})
+				}).addStyleClass('buttonHeaderColor')
 				//new sap.m.Image({src: logo_path}),
 			],
 
-			contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("DISP_BP_TITLE",{text:"Display Business Partner"})],
+			contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("DISP_BP_TITLE",{text:"Display Customer"})],
 			
 			contentRight:[
 				new sap.m.Button({
@@ -325,12 +435,12 @@
 					press: function(){
 						window.location.href = MainPageLink; 
 					}
-				})
+				}).addStyleClass('buttonHeaderColor')
 			]
 		});
 		
 		var lv_crumbs = new sap.m.Breadcrumbs("DISP_BP_BRDCRMS",{
-            currentLocationText: "Display Business Partner",
+            currentLocationText: "Display Customer",
             links: [
                 new sap.m.Link({
                     text:"Home",
@@ -361,7 +471,7 @@
 							ui("DISPLAY_BP_TABLE").setVisible(false);
 						}
 					},
-					placeholder: "Search...",
+					placeholder: "Find Customer...",
 					search: function(oEvent){
 						var lv_searchval = oEvent.getSource().getValue().trim();
 						displayBp._get_data(lv_searchval);
@@ -402,30 +512,135 @@
 				}
 				
 			},
-			columns: [
-			
-				new sap.ui.table.Column({label:new sap.m.Text({text:"Business Partner ID"}),
-					width:"20%",
-					sortProperty:"BIZPART_ID",
-					filterProperty:"BIZPART_ID",
-					autoResizable:true,
-					template:new sap.m.Text({text:"{BIZPART_ID}",maxLines:1}),
-				}),
-				new sap.ui.table.Column({label:new sap.m.Text({text:"Business Partner Name"}),
-					width:"40%",
-					sortProperty:"NAME1",
-					filterProperty:"NAME1",
-					autoResizable:true,
-					template:new sap.m.Text({text:"{NAME1}",tooltip:"{NAME1}",maxLines:1}),
-				}),
-				new sap.ui.table.Column({label:new sap.m.Text({text:"External Partner"}),
-					width:"40%",
-					sortProperty:"EXT_PARTNER",
-					filterProperty:"EXT_PARTNER",
-					autoResizable:true,
-					template:new sap.m.Text({text:"{EXT_PARTNER}",tooltip:"{EXT_PARTNER}",maxLines:1}),
-				}),
+		columns:[
 				
+				new sap.ui.table.Column({label:new sap.m.Text({text:"ID"}),
+				width:"30%",
+				sortProperty:"id",
+				filterProperty:"id",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{id}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"First name"}),
+				width:"40%",
+				sortProperty:"first_name",
+				filterProperty:"first_name",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{first_name}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Last name"}),
+				width:"40%",
+				sortProperty:"last_name",
+				filterProperty:"last_name",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{last_name}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Email"}),
+				width:"40%",
+				sortProperty:"email",
+				filterProperty:"email",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{email}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Phone Number"}),
+				width:"40%",
+				sortProperty:"phone_number",
+				filterProperty:"phone_number",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{phone_number}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Mailing Address"}),
+				width:"40%",
+				sortProperty:"mailing_address",
+				filterProperty:"mailing_address",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{mailing_address}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Billing Address"}),
+				width:"40%",
+				sortProperty:"billing_address",
+				filterProperty:"billing_address",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{billing_address}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Date Of Birth"}),
+				width:"40%",
+				sortProperty:"date_of_birth",
+				filterProperty:"date_of_birth",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{date_of_birth}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Gender"}),
+				width:"40%",
+				sortProperty:"gender",
+				filterProperty:"gender",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{gender}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Occupation"}),
+				width:"45%",
+				sortProperty:"occupation",
+				filterProperty:"occupation",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{occupation}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Company name"}),
+				width:"40%",
+				sortProperty:"company_name",
+				filterProperty:"company_name",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{company_name}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Industry"}),
+				width:"40%",
+				sortProperty:"industry",
+				filterProperty:"industry",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{industry}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Customer type"}),
+				width:"40%",
+				sortProperty:"customer_type",
+				filterProperty:"customer_type",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{customer_type}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Referral source"}),
+				width:"40%",
+				sortProperty:"referral_source",
+				filterProperty:"referral_source",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{referral_source}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Payment method"}),
+				width:"40%",
+				sortProperty:"payment_method",
+				filterProperty:"payment_method",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{payment_method}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Order number"}),
+				width:"40%",
+				sortProperty:"order_number",
+				filterProperty:"order_number",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{order_number}",maxLines:1}),
+				}),
 			]
 		});
 		
@@ -450,7 +665,7 @@
 						go_App_Right.back();
 						
 					}
-				}),
+				}).addStyleClass('buttonHeaderColor'),
 				new sap.m.Button({icon:"sap-icon://menu2",
 					press:function(){
 						go_SplitContainer.setSecondaryContentWidth("270px");
@@ -460,10 +675,10 @@
 							go_SplitContainer.setShowSecondaryContent(false);
 						}
 					}
-				}), 
+				}).addStyleClass('buttonHeaderColor'), 
 				//new sap.m.Image({src: logo_path}),
 				],
-			contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("BP_LISTING_PAGE_LABEL",{text:"Business Partner Listing"})],
+			contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("BP_LISTING_PAGE_LABEL",{text:"Customer Listing"})],
 			
 			contentRight:[
 				//fn_help_button(SelectedAppID,"BP_LISTING"),
@@ -472,12 +687,12 @@
 					press: function(){
 					window.location.href = MainPageLink; 
 					}
-				})
+				}).addStyleClass('buttonHeaderColor')
 			]
 		});
 					
 		var lv_crumbs = new sap.m.Breadcrumbs("LIST_BP_BRDCRMS",{
-			currentLocationText: "Business Partner Listing",
+			currentLocationText: "Customer Listing",
 			links: [
 				new sap.m.Link({
 					text:"Home",
@@ -518,7 +733,12 @@
                             visible: true,
                             icon: "sap-icon://download",
                             press: function () {
-								
+							 if(ui('BP_LISTING_TABLE').getModel().getData().length == 0){
+								fn_show_message_toast("No data to download");
+							}
+							 else{
+								fn_download_bp_listing();
+							}
                             }
                         })
                     ]
@@ -536,47 +756,133 @@
 			},
 			columns:[
 				
-				new sap.ui.table.Column({label:new sap.m.Text({text:"Business Partner ID"}),
-					width:"180px",
-					sortProperty:"BIZPART_ID",
-					filterProperty:"BIZPART_ID",
-					//autoResizable:true,
-					template:new sap.m.Text({text:"{BIZPART_ID}",tooltip:"{BIZPART_ID}",maxLines:1}),
+				new sap.ui.table.Column({label:new sap.m.Text({text:"ID"}),
+				width:"30%",
+				sortProperty:"id",
+				filterProperty:"id",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{id}",maxLines:1}),
 				}),
-				new sap.ui.table.Column({label:new sap.m.Text({text:"Business Partner Type"}),
-					width:"250px",
-					sortProperty:"TYPE",
-					filterProperty:"TYPE",
-					autoResizable:true,
-					template:new sap.m.Text({text:"{TYPE}",tooltip:"{TYPE}",maxLines:1}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"First name"}),
+				width:"40%",
+				sortProperty:"first_name",
+				filterProperty:"first_name",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{first_name}",maxLines:1}),
 				}),
-				new sap.ui.table.Column({label:new sap.m.Text({text:"Registered Name"}),
-					width:"350px",
-					sortProperty:"NAME1",
-					filterProperty:"NAME1",
-					template:new sap.m.Text({text:"{NAME1}",tooltip:"{NAME1}",maxLines:1}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Last name"}),
+				width:"40%",
+				sortProperty:"last_name",
+				filterProperty:"last_name",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{last_name}",maxLines:1}),
 				}),
-				new sap.ui.table.Column({label:new sap.m.Text({text:"External Partner"}),
-					width:"400px",
-					sortProperty:"EXT_PARTNER",
-					filterProperty:"EXT_PARTNER",
-					template:new sap.m.Text({text:"{EXT_PARTNER}",tooltip:"{EXT_PARTNER}",maxLines:1}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Email"}),
+				width:"40%",
+				sortProperty:"email",
+				filterProperty:"email",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{email}",maxLines:1}),
 				}),
-				
-				
-				new sap.ui.table.Column({label:new sap.m.Text({text:"Created By"}),
-					width:"160px",
-					sortProperty:"created_by",
-					filterProperty:"created_by",
-					template:new sap.m.Text({text:"{created_by}",tooltip:"{created_by}",maxLines:1}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Phone Number"}),
+				width:"40%",
+				sortProperty:"phone_number",
+				filterProperty:"phone_number",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{phone_number}",maxLines:1}),
 				}),
-				new sap.ui.table.Column({label:new sap.m.Text({text:"Creation Date"}),
-					width:"150px",
-					sortProperty:"created_at",
-					filterProperty:"created_at_desc",
-					template:new sap.m.Text({text:"{created_at_desc}",tooltip:"{created_at_desc}",maxLines:1}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Mailing Address"}),
+				width:"40%",
+				sortProperty:"mailing_address",
+				filterProperty:"mailing_address",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{mailing_address}",maxLines:1}),
 				}),
-				
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Billing Address"}),
+				width:"40%",
+				sortProperty:"billing_address",
+				filterProperty:"billing_address",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{billing_address}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Date Of Birth"}),
+				width:"40%",
+				sortProperty:"date_of_birth",
+				filterProperty:"date_of_birth",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{date_of_birth}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Gender"}),
+				width:"40%",
+				sortProperty:"gender",
+				filterProperty:"gender",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{gender}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Occupation"}),
+				width:"45%",
+				sortProperty:"occupation",
+				filterProperty:"occupation",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{occupation}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Company name"}),
+				width:"40%",
+				sortProperty:"company_name",
+				filterProperty:"company_name",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{company_name}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Industry"}),
+				width:"40%",
+				sortProperty:"industry",
+				filterProperty:"industry",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{industry}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Customer type"}),
+				width:"40%",
+				sortProperty:"customer_type",
+				filterProperty:"customer_type",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{customer_type}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Referral source"}),
+				width:"40%",
+				sortProperty:"referral_source",
+				filterProperty:"referral_source",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{referral_source}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Payment method"}),
+				width:"40%",
+				sortProperty:"payment_method",
+				filterProperty:"payment_method",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{payment_method}",maxLines:1}),
+				}),
+
+				new sap.ui.table.Column({label:new sap.m.Text({text:"Order number"}),
+				width:"40%",
+				sortProperty:"order_number",
+				filterProperty:"order_number",
+				autoResizable:true,
+				template:new sap.m.Text({text:"{order_number}",maxLines:1}),
+				}),
 			]
 
 		});
@@ -592,7 +898,7 @@
 	function createTestPage(){
 		let page = new sap.m.Page("TEST_PAGE",{}).addStyleClass('sapUiSizeCompact');
 		let crumbs = new sap.m.Breadcrumbs("TEST_CRUMBS",{
-			currentLocationText: "Business Partner Listing",
+			currentLocationText: "Customer Listing",
 			links: [
 				new sap.m.Link({
 					text:"Home",

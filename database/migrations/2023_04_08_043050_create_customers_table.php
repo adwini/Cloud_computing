@@ -12,20 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
+            
+            $table->bigIncrements('id')->unique()->from(6000);
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('phone_number');
+            $table->string('email')->unique()->nullable();
+            $table->integer('phone_number')->nullable();
             $table->string('mailing_address')->nullable();
             $table->string('billing_address')->nullable();
             $table->string('date_of_birth')->nullable();
-            $table->enum('gender', ['male', 'female' ])->nullable();
+            $table->string('gender')->nullable();
             $table->string('occupation')->nullable();
             $table->string('company_name')->nullable();
             $table->string('industry')->nullable();
             $table->string('customer_type')->nullable();
             $table->string('referral_source')->nullable();
+            $table->string('p_history')->nullable();
             $table->string('payment_method')->nullable();
             $table->integer('order_number')->nullable();
             $table->timestamps();

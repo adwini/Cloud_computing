@@ -1,82 +1,172 @@
 <script>
-	var bizData = [
-		{
-			TYPE     			: "IBM",
-			NAME1    			: "Noel Lehitimas",
-			BIZPART_ID      	: "100001",
-			EXT_PARTNER      	: "EXT_PARTNER1",
-			SOURCE_SYS     		: "SOURCESYS1",
-			DEL_FLAG    		: true
-		},
-		{
-			TYPE     			: "ACT",
-			NAME1    			: "Noel Lehitimas2",
-			BIZPART_ID      	: "100002",
-			EXT_PARTNER      	: "EXT_PARTNER2",
-			SOURCE_SYS     		: "SOURCESYS2",
-			DEL_FLAG    		: true
-		}
-	];
 
 	const bpDataOrganizer = {
-		_filteredById : function(id){
-			filteredBP = [];
-			for(let i=0; i<bizData.length; i++){
-				if(bizData[i].BIZPART_ID == id){
-					filteredBP.push(bizData[i]);
-				}
-			}
-			return filteredBP;
+		_getBpData : async function(){
+			let busyDialog = showBusyDialog("Please wait loading..");
+			busyDialog.open();
+		
+			const response =  await fetch("/getBpData");
+			const data = await response.json();
+			busyDialog.close();
+			return data;
+		},
+		_filteredById : async function(id){
+			let busyDialog = showBusyDialog("Please wait loading..");
+			busyDialog.open();
+			const bp_id = btoa(id);
+			const response =  await fetch("/getDataById/"+bp_id);
+			const dataById = await response.json();
+			busyDialog.close();
+			return dataById;
+			
 		},
 		_updateById : function(id){
 			let busyDialog = showBusyDialog("Please wait loading..");
 				busyDialog.open();
 			
-			bizData.map(bp_id => {
-				if (bp_id.BIZPART_ID == id) {
-				 
-						bp_id.NAME1    			= ui('BP_TYPE_REGNAME').getValue().trim();
-						bp_id.TYPE     			= ui('BP_TYPE_INFO').getSelectedKey();
-						bp_id.NAME1    			= ui('BP_TYPE_REGNAME').getValue().trim();
-						bp_id.BIZPART_ID      	= ui('INPUT_BP_ID').getValue().trim();
-						bp_id.EXT_PARTNER      	= ui('BP_TYPE_EXTPARTNER').getValue().trim();
-						bp_id.SOURCE_SYS     	= ui('INPUT_CONTROL_INFO_SOURCE_SYS').getValue().trim();
-						bp_id.DEL_FLAG    		= ui('CONTROL_INFO_DEL_FLAG').getState();
-				}
+	 		let bpDataupdate = [{
+
+				// NAME1    			: ui('BP_TYPE_REGNAME').getValue().trim(),
+
+				first_name : 		ui('first_name').getValue().trim(),
+				last_name : 		ui('L_name').getValue().trim(),
+				email : 			ui('E_adress').getValue().trim(),
+				phone_number : 		ui('p_num').getValue().trim(),
+				mailing_address : 	ui('m_address').getValue().trim(),
+				billing_address : 	ui('b_address').getValue().trim(),
+				date_of_birth :		ui('date_of_birth').getValue().trim(),
+				gender : 			ui('gender').getSelectedKey(),
+				occupation : 		ui('occupation').getValue().trim(),
+				company_name : 		ui('com_name').getValue().trim(),
+				industry : 			ui('industry').getValue().trim(),
+				customer_type : 	ui('customer_type').getSelectedKey(),
+				referral_source :	ui('ref_src').getSelectedKey(),
+				p_history: 			ui('p_history').getValue().trim(),
+				payment_method : 	ui('p_method').getValue().trim(),
+				order_number : 		ui('or_num').getValue().trim(),
 				
+
+			}];
+
+
+			const data = {
+				BP_ID : id,	
+				bpDataupdate : bpDataupdate
+				}
+
+			fetch('/update_data',{
+				method : 'POST',
+				headers : {
+					'Content-Type' : 'application/json',
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				body : JSON.stringify(data)
+			}).then((response) => {
+				if(response.ok){
+					screenMode._display(id);
+					fn_show_message_toast("Successfully updated customer #"+id);
+				}
+				console.log(response);
+				return response.json();
+			}).then(data => {
+				console.log(data);
+				busyDialog.close();
+			}).catch((err) => {
+				console.log("Rejected "+err);
+				busyDialog.close();
 			});
-			screenMode._display(id);
-			listingBp._getData(bizData);
-			setTimeout(() => {busyDialog.close();}, 2000);
-		}
+		},	
+		_removeById : function(id){
+			let busyDialog = showBusyDialog("Please wait loading..");
+				busyDialog.open();
+				
+			const bp_id = {BP_ID : id}
+			fetch('/removeDataById',{
+				method : 'POST',
+				headers : {
+					'Content-Type' : 'application/json',
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				body : JSON.stringify(bp_id)
+			}).then((response) => {
+				if(response.ok){
+					fn_show_message_toast("Successfully deleted customer #"+id);
+					ui('LEFT_MENU_TEMPLATE-MENU_LIST-2').firePress();
+				}
+				console.log(response);
+				return response.json();
+			}).then(data => {
+				console.log(data);
+				busyDialog.close();
+			}).catch((err) => {
+				console.log("Rejected "+err);
+				busyDialog.close();
+			});
+		},
+
+		// _getRadioIndex : function(id){
+		// 	let radioButton = ui("BP_COMPANY").getButtons();
+		// 	let selectedIndex;
+		// 	for(let i=0; i<radioButton.length; i++){
+		// 		if(radioButton[i].getId() == id){
+		// 			selectedIndex = i;
+		// 		}
+		// 	}
+
+		// 	return selectedIndex;
+
+		// },
+
+		// _validateBP : function(id){
+		// 	let isExist = false;
+		// 	for(let i=0; i<bizData.length; i++){
+		// 		if(bizData[i].BIZPART_ID == id){
+		// 			isExist = true;
+		// 			break;
+		// 		}
+		// 	}
+		// 	return isExist;
+		// }
 	}
 
 	const screenMode = {
-		_id : "",
-		_title : "",
-		_mode : "",
+		_id : " ",
+		_title : " ",
+		_mode : " ",
+
 		_create : function(){
 			this._mode = "create";
 			let bp_title = this._title;
-			bp_title = "Create Business Partner";
+			bp_title = "Create Customer";
 			this._clear();
 			//Buttons
 			ui("CREATE_BP_SAVE_BTN").setVisible(true);
 			ui("CREATE_BP_EDIT_BTN").setVisible(false);
 			ui("CREATE_BP_CANCEL_BTN").setVisible(false);
+			ui("CREATE_BP_DEL_BTN").setVisible(false);
 
 			//title and crumbs
 			ui('BP_TITLE').setText(bp_title);
 			ui('CREATE_BP_BRDCRMS').setCurrentLocationText(bp_title);
-			ui("PANEL_FORM").setTitle("New Business Partner");
+			ui("PANEL_FORM").setTitle("Add New Customer");
 
 			//Fields
-			ui('BP_TYPE_INFO').setEditable(true);
-			ui('BP_TYPE_REGNAME').setEditable(true);
-			ui('INPUT_BP_ID').setEditable(true);
-			ui('BP_TYPE_EXTPARTNER').setEditable(true);
-			ui('INPUT_CONTROL_INFO_SOURCE_SYS').setEditable(true);
-			ui('CONTROL_INFO_DEL_FLAG').setEnabled(true);
+			ui('first_name').setEditable(true);
+			ui('L_name').setEditable(true);
+			ui('E_adress').setEditable(true);
+			ui('p_num').setEditable(true);
+			ui('m_address').setEditable(true);
+			ui('b_address').setEditable(true);
+			ui('date_of_birth').setEditable(true);
+			ui('gender').setEditable(true);
+			ui('occupation').setEditable(true);
+			ui('com_name').setEditable(true);
+			ui('industry').setEditable(true);
+			ui('customer_type').setEditable(true);
+			ui('ref_src').setEditable(true);
+			ui('p_history').setEditable(true);
+			ui('p_method').setEditable(true);
+			ui('or_num').setEditable(true);
 
 			go_App_Right.to('CREATE_BP_PAGE');
 		},
@@ -86,52 +176,92 @@
 			ui("CREATE_BP_SAVE_BTN").setVisible(true);
 			ui("CREATE_BP_EDIT_BTN").setVisible(false);
 			ui("CREATE_BP_CANCEL_BTN").setVisible(true);
+			ui("CREATE_BP_DEL_BTN").setVisible(false);
 
 			//Fields
-			ui('BP_TYPE_INFO').setEditable(true);
-			ui('BP_TYPE_REGNAME').setEditable(true);
-			ui('INPUT_BP_ID').setEditable(false);
-			ui('BP_TYPE_EXTPARTNER').setEditable(true);
-			ui('INPUT_CONTROL_INFO_SOURCE_SYS').setEditable(true);
-			ui('CONTROL_INFO_DEL_FLAG').setEnabled(true);
+			ui('first_name').setEditable(true);
+			ui('L_name').setEditable(true);
+			ui('E_adress').setEditable(true);
+			ui('p_num').setEditable(true);
+			ui('m_address').setEditable(true);
+			ui('b_address').setEditable(true);
+			ui('date_of_birth').setEditable(true);
+			ui('gender').setEditable(true);
+			ui('occupation').setEditable(true);
+			ui('com_name').setEditable(true);
+			ui('industry').setEditable(true);
+			ui('customer_type').setEditable(true);
+			ui('ref_src').setEditable(true);
+			ui('p_history').setEditable(true);
+			ui('p_method').setEditable(true);
+			ui('or_num').setEditable(false);
 		},
+
 		_display : function(id){
+			ui('MESSAGE_STRIP_BP_ERROR').destroyContent().setVisible(false);
 			this._mode = "display";
 			this._id = id;
 			let bp_title = this._title;
-			bp_title = "Display Business Partner";
+			bp_title = "Display Customer";
 			//Buttons
 			ui("CREATE_BP_SAVE_BTN").setVisible(false);
 			ui("CREATE_BP_EDIT_BTN").setVisible(true);
 			ui("CREATE_BP_CANCEL_BTN").setVisible(false);
+			ui("CREATE_BP_DEL_BTN").setVisible(true);
 
 
 			//fields with value
-			let data = bpDataOrganizer._filteredById(id);
+			let response =  async () => {
+			let data = await bpDataOrganizer._filteredById(id);
+			console.log(data);
 			if(data.length > 0){
-				ui('BP_TYPE_INFO').setSelectedKey(data[0].TYPE).setEditable(false);
-       			ui('BP_TYPE_REGNAME').setValue(data[0].NAME1).setEditable(false);
-        		ui('INPUT_BP_ID').setValue(data[0].BIZPART_ID).setEditable(false);
-				ui('BP_TYPE_EXTPARTNER').setValue(data[0].EXT_PARTNER).setEditable(false);
-				ui('INPUT_CONTROL_INFO_SOURCE_SYS').setValue(data[0].SOURCE_SYS).setEditable(false);
-				ui('CONTROL_INFO_DEL_FLAG').setState(data[0].DEL_FLAG).setEnabled(false);
-			
-			
+				ui('first_name').setEditable(false);
+				ui('L_name').setEditable(false);
+				ui('E_adress').setEditable(false);
+				ui('p_num').setEditable(false);
+				ui('m_address').setEditable(false);
+				ui('b_address').setEditable(false);
+				ui('date_of_birth').setEditable(false);
+				ui('gender').setEditable(false);
+				ui('occupation').setEditable(false);
+				ui('com_name').setEditable(false);
+				ui('industry').setEditable(false);
+				ui('customer_type').setEditable(false);
+				ui('ref_src').setEditable(false);
+				ui('p_history').setEditable(false);
+				ui('p_method').setEditable(false);
+				ui('or_num').setEditable(false);
+				
 				//title and crumbs
 				ui('BP_TITLE').setText(bp_title);
 				ui('CREATE_BP_BRDCRMS').setCurrentLocationText(bp_title);
-				ui("PANEL_FORM").setTitle("Business Partner ID "+"("+data[0].BIZPART_ID+")");
+				ui("PANEL_FORM").setTitle("Customer ID "+"("+data[0].id+")");
 
-				go_App_Right.to('CREATE_BP_PAGE');
-			}			
+					go_App_Right.to('CREATE_BP_PAGE');
+				}	
+			};
+			response();		
 		},
 		_clear : function(){
-			ui('BP_TYPE_INFO').setValue("");
-			ui('BP_TYPE_REGNAME').setValue("");
-			ui('INPUT_BP_ID').setValue("");
-			ui('BP_TYPE_EXTPARTNER').setValue("");
-			ui('INPUT_CONTROL_INFO_SOURCE_SYS').setValue("");
-			ui('CONTROL_INFO_DEL_FLAG').setEnabled(true);
+			ui('MESSAGE_STRIP_BP_ERROR').destroyContent().setVisible(false);
+			ui('first_name').setValue("");
+			ui('L_name').setValue("");
+			ui('E_adress').setValue("");
+			ui('p_num').setValue("");
+			ui('m_address').setValue("");
+			ui('b_address').setValue("");
+			ui('date_of_birth').setValue("");
+			ui('gender').setValue("");
+			ui('occupation').setValue("");
+			ui('com_name').setValue("");
+			ui('industry').setValue("");
+			ui('customer_type').setValue("");
+			ui('ref_src').setValue("");
+			ui('p_history').setValue("");
+			ui('p_method').setValue("");
+			ui('or_num').setValue("");
+
+	
 		}
 	
 	
@@ -140,37 +270,47 @@
     const createBP = () => {
 		let busyDialog = showBusyDialog("Please wait loading..");
 		busyDialog.open();
-		let data_for_general = {
-			TYPE     			: ui('BP_TYPE_INFO').getSelectedKey(),
-			NAME1    			: ui('BP_TYPE_REGNAME').getValue().trim(),
-			BIZPART_ID      	: ui('INPUT_BP_ID').getValue().trim(),
-			EXT_PARTNER      	: ui('BP_TYPE_EXTPARTNER').getValue().trim(),
-			SOURCE_SYS     		: ui('INPUT_CONTROL_INFO_SOURCE_SYS').getValue().trim(),
-			DEL_FLAG    		: ui('CONTROL_INFO_DEL_FLAG').getState()
-   		};
-		//add new data to array
-		bizData.push(data_for_general);
-		screenMode._display(data_for_general.BIZPART_ID);
-		setTimeout(() => {busyDialog.close();}, 2000);
 		
-		//commented use for backend only
-		/*fetch('/bizpartner/create_data',{
+		let data_for_general = {
+
+			first_name				:ui('first_name').getValue().trim(),
+			last_name				:ui('L_name').getValue().trim(),
+			email					:ui('E_adress').getValue().trim(),
+			phone_number			:ui('p_num').getValue().trim(),
+			mailing_address			:ui('m_address').getValue().trim(),
+			billing_address			:ui('b_address').getValue().trim(),
+			date_of_birth			:ui('date_of_birth').getValue().trim(),
+			gender					:ui('gender').getSelectedKey(),
+			occupation				:ui('occupation').getValue().trim(),
+			company_name			:ui('com_name').getValue().trim(),
+			industry				:ui('industry').getValue().trim(),
+			customer_type			:ui('customer_type').getSelectedKey(),
+			referral_source			:ui('ref_src').getSelectedKey(),
+			payment_method			:ui('p_method').getValue().trim(),
+			order_number			:ui('or_num').getValue().trim(),
+   		};	
+		
+	 fetch('/create_data',{
 			method : 'POST',
 			headers : {
 				'Content-Type' : 'application/json',
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			},
 			body : JSON.stringify(data_for_general)
-
-
 		}).then((response) => {
+			if(response.ok){
+				
+				fn_show_message_toast("Successfully created a new customer");
+			}
 			console.log(response);
 			return response.json();
 		}).then(data => {
-			console.log(data);
+			screenMode._display(data.customID);
+			busyDialog.close();
 		}).catch((err) => {
 			console.log("Rejected "+err);
-		});*/
+			busyDialog.close();
+		});
         
     }
 
@@ -178,14 +318,11 @@
 		
 		_get_data(search){
 			
-			let busyDialog = showBusyDialog("Please wait loading..");
-				busyDialog.open();
-
-				let data = bpDataOrganizer._filteredById(search);
+			let response = async () => {
+				let data =  await bpDataOrganizer._filteredById(search);
 				this._bind_data(data);
-			
-			
-			setTimeout(() => {busyDialog.close();}, 2000);
+			};
+			response();		
 		},
 		_bind_data(data){
 		
@@ -215,9 +352,74 @@
 			ui('BP_LISTING_TABLE').setModel(lt_model).bindRows("/");
 			ui("BP_LISTING_TABLE").setVisible(true);
 			
-			ui('BP_LISTING_LABEL').setText("Business Partner (" + data.length + ")");
+			ui('BP_LISTING_LABEL').setText("Customer (" + data.length + ")");
 		}
 	}
+
+		let lv_dialog_save = new sap.m.Dialog("BP_SAVE_DIALOG",{
+		title: "Confirmation",
+		beginButton: new sap.m.Button({
+			text:"Ok",
+			type:"Accept",
+			icon:"sap-icon://accept",
+			press:function(oEvt){
+				if(screenMode._mode == "create"){
+					createBP();
+				}else{
+					bpDataOrganizer._updateById(screenMode._id);
+				}
+
+				oEvt.getSource().getParent().close();
+			}
+		}),
+		endButton:new sap.m.Button({
+			text:"Cancel",
+			type:"Reject",
+			icon:"sap-icon://decline",
+			press:function(oEvt){
+			oEvt.getSource().getParent().close();
+			}
+		}),
+		content:[
+			new sap.m.HBox({
+				items:[
+				new sap.m.Label({text:"Confirm to save changes?"})
+				]
+			})
+		]
+	}).addStyleClass('sapUiSizeCompact');
+	
+	let lv_dialog_del = new sap.m.Dialog("BP_DELETE_DIALOG",{
+		title: "Confirmation",
+		beginButton: new sap.m.Button({
+			text:"Ok",
+			type:"Accept",
+			icon:"sap-icon://accept",
+			press:function(oEvt){
+				bpDataOrganizer._removeById(screenMode._id);
+				oEvt.getSource().getParent().close();
+			}
+		}),
+		endButton:new sap.m.Button({
+			text:"Cancel",
+			type:"Reject",
+			icon:"sap-icon://decline",
+			press:function(oEvt){
+			oEvt.getSource().getParent().close();
+			}
+		}),
+		content:[
+			new sap.m.HBox({
+				items:[
+				new sap.m.Label({text:"Confirm to delete Customer?"})
+				]
+			})
+		]
+	}).addStyleClass('sapUiSizeCompact');
+
+
+
+
 
 
 
