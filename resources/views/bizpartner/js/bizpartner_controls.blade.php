@@ -515,7 +515,7 @@
 		columns:[
 				
 				new sap.ui.table.Column({label:new sap.m.Text({text:"ID"}),
-				width:"30%",
+				width:"60px",
 				sortProperty:"id",
 				filterProperty:"id",
 				autoResizable:true,
@@ -523,7 +523,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"First name"}),
-				width:"40%",
+				width:"80px",
 				sortProperty:"first_name",
 				filterProperty:"first_name",
 				autoResizable:true,
@@ -531,7 +531,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Last name"}),
-				width:"40%",
+				width:"100px",
 				sortProperty:"last_name",
 				filterProperty:"last_name",
 				autoResizable:true,
@@ -539,7 +539,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Email"}),
-				width:"40%",
+				width:"100px",
 				sortProperty:"email",
 				filterProperty:"email",
 				autoResizable:true,
@@ -547,7 +547,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Phone Number"}),
-				width:"40%",
+				width:"80px",
 				sortProperty:"phone_number",
 				filterProperty:"phone_number",
 				autoResizable:true,
@@ -555,7 +555,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Mailing Address"}),
-				width:"40%",
+				width:"120px",
 				sortProperty:"mailing_address",
 				filterProperty:"mailing_address",
 				autoResizable:true,
@@ -563,7 +563,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Billing Address"}),
-				width:"40%",
+				width:"120px",
 				sortProperty:"billing_address",
 				filterProperty:"billing_address",
 				autoResizable:true,
@@ -571,7 +571,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Date Of Birth"}),
-				width:"40%",
+				width:"80px",
 				sortProperty:"date_of_birth",
 				filterProperty:"date_of_birth",
 				autoResizable:true,
@@ -579,7 +579,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Gender"}),
-				width:"40%",
+				width:"60px",
 				sortProperty:"gender",
 				filterProperty:"gender",
 				autoResizable:true,
@@ -587,7 +587,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Occupation"}),
-				width:"45%",
+				width:"100px",
 				sortProperty:"occupation",
 				filterProperty:"occupation",
 				autoResizable:true,
@@ -595,7 +595,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Company name"}),
-				width:"40%",
+				width:"130px",
 				sortProperty:"company_name",
 				filterProperty:"company_name",
 				autoResizable:true,
@@ -603,7 +603,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Industry"}),
-				width:"40%",
+				width:"100px",
 				sortProperty:"industry",
 				filterProperty:"industry",
 				autoResizable:true,
@@ -611,7 +611,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Customer type"}),
-				width:"40%",
+				width:"100px",
 				sortProperty:"customer_type",
 				filterProperty:"customer_type",
 				autoResizable:true,
@@ -619,7 +619,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Referral source"}),
-				width:"40%",
+				width:"80px",
 				sortProperty:"referral_source",
 				filterProperty:"referral_source",
 				autoResizable:true,
@@ -627,7 +627,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Payment method"}),
-				width:"40%",
+				width:"80px",
 				sortProperty:"payment_method",
 				filterProperty:"payment_method",
 				autoResizable:true,
@@ -635,7 +635,7 @@
 				}),
 
 				new sap.ui.table.Column({label:new sap.m.Text({text:"Order number"}),
-				width:"40%",
+				width:"70px",
 				sortProperty:"order_number",
 				filterProperty:"order_number",
 				autoResizable:true,
