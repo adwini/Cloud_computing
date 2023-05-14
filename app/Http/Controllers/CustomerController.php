@@ -14,11 +14,8 @@ class CustomerController extends Controller
     public function createCustomer(Request $request){
         
         $createBpData = $request->all(); 
-        // dd($createBpData[0]['first_name']);
-        $return = [];  
+        $return = []; 
         $customID = customers::insertGetId($createBpData);
-        // 'first_name' => $createBpData[0]['first_name'],'last_name' => 'asfasad' ],
-
         return compact('return','createBpData','customID');
     }
 
