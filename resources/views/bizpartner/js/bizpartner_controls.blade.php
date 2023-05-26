@@ -80,18 +80,18 @@
                 {
                     title   : "Create Customer",
 					funct  	: "CREATE_BP",
-                    icon    : "sap-icon://add-product",
+                    icon    : "sap-icon://add-employee",
                     visible : true
                 },
                 {
                     title   : "Find Customer",
-                    icon    : "sap-icon://business-card",
+                    icon    : "sap-icon://employee-lookup",
 					funct  	: "DISPLAY_BP",
                     visible : true
                 },
                 {
                     title   : "Customer Listing",
-                    icon    : "sap-icon://checklist-item",
+                    icon    : "sap-icon://multiselect-all",
 					funct  	: "BP_LIST",
                     visible : true
                 },
@@ -143,14 +143,14 @@
 				
 			],
 
-			contentRight:[
-				new sap.m.Button({
-					icon: "sap-icon://home",
-					press: function(){
-						window.location.href = MainPageLink; 
-					}
-				}).addStyleClass('buttonHeaderColor')
-			],
+			// contentRight:[
+			// 	new sap.m.Button({
+			// 		icon: "sap-icon://home",
+			// 		press: function(){
+			// 			window.location.href = MainPageLink; 
+			// 		}
+			// 	}).addStyleClass('buttonHeaderColor')
+			// ],
 			contentMiddle:[
                 new sap.m.Label("BP_TITLE",{text:"Create Customer"})
             ],
@@ -258,22 +258,73 @@
 							
 								
 								new sap.m.Label({text:"First Name",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("first_name",{value:"", width:TextWidth}),
+								new sap.m.Input("first_name",{value:"", width:TextWidth,
+								liveChange: function (oEvent) {
+										var input = oEvent.getSource();
+										var value = input.getValue();
+										
+										if (value.trim() === "") {
+											input.setValueState("Error");
+											input.setValueStateText("First name cannot be empty");
+										} else {
+											input.setValueState("None");
+										}
+									}
+							  	
+								}),
 								
+								new sap.m.Label({text: "Last Name", width: labelWidth}).addStyleClass('class_label_padding'),
+								new sap.m.Input("L_name", { value: "", width: TextWidth,
+									liveChange: function (oEvent) {
+										var input = oEvent.getSource();
+										var value = input.getValue();
+										
+										if (value.trim() === "") {
+											input.setValueState("Error");
+											input.setValueStateText("Last name cannot be empty");
+										} else {
+											input.setValueState("None");
+										}
+									}
+								}),
+
 								
-								
-								new sap.m.Label({text:"Last Name",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("L_name",{value:"", width:TextWidth}),
+								// new sap.m.Label({text:"Last Name",width:labelWidth}).addStyleClass('class_label_padding'),
+								// new sap.m.Input("L_name",{value:"", width:TextWidth}),
 
 								
 								
 								new sap.m.Label({text:"Email Address",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("E_adress",{value:"", width:TextWidth}),
+								new sap.m.Input("E_adress",{value:"", width:TextWidth,
+								    liveChange: function(oEvent) {
+   			    					 var input = oEvent.getSource();
+									var email = input.getValue();
+									var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-								
+									if (emailRegex.test(email)) {
+										input.setValueState("None");
+									} else {
+										input.setValueState("Error");
+										input.setValueStateText("Invalid email address");
+									}
+								}
+							}),
+
 							
+
 								new sap.m.Label({text:"Phone Number",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("p_num",{value:"", width:TextWidth}),
+								new sap.m.Input("p_num",{value:"", width:TextWidth,type: sap.m.InputType.Tel,
+								liveChange: function (oEvent) {
+										var input = oEvent.getSource();
+										var value = input.getValue();
+										
+										if (value.trim() === "") {
+											input.setValueState("Error");
+											input.setValueStateText("Phone number is required");
+										} else {
+											input.setValueState("None");
+										}
+									}}),
 
 								new sap.m.Label({text:"Mailing Address",width:labelWidth}).addStyleClass('class_label_padding'),
 								new sap.m.Input("m_address",{value:"", width:TextWidth}),
@@ -323,7 +374,45 @@
 								new sap.m.Input("com_name",{value:"", width:TextWidth}),
 
 								new sap.m.Label({text:"Industry	",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("industry",{value:"", width:TextWidth}),
+								new sap.m.Select("industry",{value:"", width:TextWidth,
+								items: [
+										new sap.ui.core.ListItem({
+											text: "Select Industry",
+											key: "",
+											
+										}),
+										new sap.ui.core.ListItem({
+											text: "Technology Industry",
+											key: "tech",
+											icon: "sap-icon://official-service"
+										}),
+										new sap.ui.core.ListItem({
+											text: "Financial Services Industry",
+											key: "finance",
+											icon: "sap-icon://official-service"
+										}),
+										new sap.ui.core.ListItem({
+											text: "Healthcare Industry",
+											key: "health",
+											icon: "sap-icon://official-service"
+										}),
+										new sap.ui.core.ListItem({
+											text: "Automotive Industry",
+											key: "auto",
+											icon: "sap-icon://official-service"
+										}),
+										new sap.ui.core.ListItem({
+											text: "Energy Industry",
+											key: "energy",
+											icon: "sap-icon://official-service"
+										}),
+										new sap.ui.core.ListItem({
+											text: "None",
+											key: "none",
+											
+										}),
+										
+									]}),
 								
 								new sap.m.Label({text:"Customer Type",width:labelWidth}).addStyleClass('class_label_padding'),
 								new sap.m.Select("customer_type",{
@@ -339,13 +428,13 @@
 											text: "NEW",
 											key: "new",
 											// additionalText: "MALE",
-											// icon: "sap-icon://male"
+											icon: "sap-icon://add-employee"
 										}),
 										new sap.ui.core.ListItem({
 											text: "OCCATIONAL",
 											key: "occational",
 											// additionalText: "FEMALE",
-											// icon: "sap-icon://female"
+											icon: "sap-icon://visits"
 										}),
 										
 									]
@@ -363,14 +452,14 @@
 										new sap.ui.core.ListItem({
 											text: "Social Media",
 											key: "social_m",
-											// additionalText: "MALE",
-											// icon: "sap-icon://male"
+											icon:"sap-icon://my-view",
+										
 										}),
 										new sap.ui.core.ListItem({
 											text: "Friend",
 											key: "friend",
-											// additionalText: "FEMALE",
-											// icon: "sap-icon://female"
+											icon:"sap-icon://company-view",
+										
 										}),
 										
 									]
@@ -382,10 +471,42 @@
 
 
 								new sap.m.Label({text:"Payment Method",width:labelWidth}).addStyleClass('class_label_padding'),			
-								new sap.m.Input("p_method",{value:"", width:TextWidth}),
+								new sap.m.Select("p_method",{value:"", width:TextWidth,
+								items: [
+										new sap.ui.core.ListItem({
+											text: "",
+											key: "",
+											
+										}),
+										new sap.ui.core.ListItem({
+											text: "Bank Transfer",
+											key: "bank",
+											icon:"sap-icon://capital-projects",
+										
+										}),
+										new sap.ui.core.ListItem({
+											text: "Paypal",
+											key: "paypal",
+											icon:"sap-icon://sales-document",
+										
+										}),
+										new sap.ui.core.ListItem({
+											text: "Credit Card",
+											key: "credit",
+											icon:"sap-icon://wallet",
+										
+										}),
+										new sap.ui.core.ListItem({
+											text: "Debit Card",
+											key: "debit",
+											icon:"sap-icon://payment-approval",
+										
+										}),
+										
+									]}),
 
 								new sap.m.Label({text:"Order Number",width:labelWidth}).addStyleClass('class_label_padding'),
-								new sap.m.Input("or_num",{value:"", width:TextWidth}),
+								new sap.m.Input("or_num",{value:"", width:TextWidth,type: sap.m.InputType.Number}),
 
                             ]
                         })
@@ -429,14 +550,14 @@
 
 			contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("DISP_BP_TITLE",{text:"Display Customer"})],
 			
-			contentRight:[
-				new sap.m.Button({
-					icon: "sap-icon://home",
-					press: function(){
-						window.location.href = MainPageLink; 
-					}
-				}).addStyleClass('buttonHeaderColor')
-			]
+			// contentRight:[
+			// 	new sap.m.Button({
+			// 		icon: "sap-icon://home",
+			// 		press: function(){
+			// 			window.location.href = MainPageLink; 
+			// 		}
+			// 	}).addStyleClass('buttonHeaderColor')
+			// ]
 		});
 		
 		var lv_crumbs = new sap.m.Breadcrumbs("DISP_BP_BRDCRMS",{
@@ -448,12 +569,12 @@
                        // fn_click_breadcrumbs("HOME");
                     }
                 }),
-				new sap.m.Link("DISP_BP_BRDCRMS_TITLE",{
-                    text:"Business Partner Management",
-                    press:function(oEvt){
-                      //  fn_click_breadcrumbs("HOME");
-                    }
-                }),
+				// new sap.m.Link("DISP_BP_BRDCRMS_TITLE",{
+                //     text:"Business Partner Management",
+                //     press:function(oEvt){
+                //       //  fn_click_breadcrumbs("HOME");
+                //     }
+                // }),
 				
             ]
         }).addStyleClass('breadcrumbs-padding');

@@ -39,11 +39,11 @@
 
 				occupation : 		ui('occupation').getValue().trim(),
 				company_name : 		ui('com_name').getValue(),
-				industry : 			ui('industry').getValue(),
+				industry : 			ui('industry').getSelectedKey(),
 				customer_type : 	ui('customer_type').getSelectedKey(),
 				referral_source :	ui('ref_src').getSelectedKey(),
 				p_history: 			ui('p_history').getValue(),
-				payment_method : 	ui('p_method').getValue(),
+				payment_method : 	ui('p_method').getSelectedKey(),
 				order_number : 		ui('or_num').getValue().trim(),
 				
 
@@ -285,11 +285,11 @@
 			
 			occupation				:ui('occupation').getValue().trim(),
 			company_name			:ui('com_name').getValue(),
-			industry				:ui('industry').getValue(),
+			industry				:ui('industry').getSelectedKey(),
 			customer_type			:ui('customer_type').getSelectedKey(),
 			referral_source			:ui('ref_src').getSelectedKey(),
 			p_history				:ui('p_history').getValue(),
-			payment_method			:ui('p_method').getValue(),
+			payment_method			:ui('p_method').getSelectedKey(),
 			order_number			:ui('or_num').getValue().trim(),
    		};	
 		
@@ -419,12 +419,6 @@
 			})
 		]
 	}).addStyleClass('sapUiSizeCompact');
-
-
-
-
-
-
 
 
 </script>
