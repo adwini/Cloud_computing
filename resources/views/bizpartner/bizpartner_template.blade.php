@@ -87,6 +87,24 @@
             closeOnBrowserNavigation: true   // default
         });
     }
+	function fn_show_message_toast_center(msg) {
+		 new sap.m.MessageToast.show(msg, {
+            duration: 6000,                  // default
+            width: "100%",                   // default
+            my: "center bottom",             // default
+            at: "center center",             // default
+            of: window,                      // default
+            offset: "0 300",                   // default
+            collision: "fit fit",            // default
+            onClose: null,                   // default
+            autoClose: true,                 // default
+            animationTimingFunction: "ease", // default
+            animationDuration: 3000,         // default
+            closeOnBrowserNavigation: true   // default
+        });
+    }
+
+
     function get_ClientDate(){
 		d = new Date();
 
@@ -102,7 +120,6 @@
 		
 		let busyDialog = showBusyDialog("Please wait loading..");
 		    busyDialog.open();
-
 
 		var lv_contexts = [];
 		
@@ -237,10 +254,7 @@
         CreateContent();
         ui('LEFT_MENU_TEMPLATE-MENU_LIST-0').firePress();
 	});
-
-   
-
-   
+  
 </script>
 
  @endsection

@@ -44,4 +44,5 @@ Route::controller(CustomerController::class)->group(function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/', 'index');
     Route::post('/', 'login')->name('login');
+    // Route::post('/logout', 'logout');
 });

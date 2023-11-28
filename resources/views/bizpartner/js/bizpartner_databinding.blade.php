@@ -105,29 +105,6 @@
 			});
 		},
 
-		// _getRadioIndex : function(id){
-		// 	let radioButton = ui("BP_COMPANY").getButtons();
-		// 	let selectedIndex;
-		// 	for(let i=0; i<radioButton.length; i++){
-		// 		if(radioButton[i].getId() == id){
-		// 			selectedIndex = i;
-		// 		}
-		// 	}
-
-		// 	return selectedIndex;
-
-		// },
-
-		// _validateBP : function(id){
-		// 	let isExist = false;
-		// 	for(let i=0; i<bizData.length; i++){
-		// 		if(bizData[i].BIZPART_ID == id){
-		// 			isExist = true;
-		// 			break;
-		// 		}
-		// 	}
-		// 	return isExist;
-		// }
 	}
 
 	const screenMode = {
@@ -267,6 +244,17 @@
 	
 	
 	};
+
+	// const logout = ()=>{
+
+	// 	fetch('/logout',{
+	// 		method: 'POST',
+	// 		headers: {
+	// 		'Content-Type' : 'application/json',
+	// 		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	// 		},
+	// 	})
+	// }
 
     const createBP = () => {
 		let busyDialog = showBusyDialog("Please wait loading..");
